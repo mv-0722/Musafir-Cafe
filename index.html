@@ -1,0 +1,2874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Musafir Cafe — Indian Flavours, Chai & Stories</title>
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500;1,600&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: '#FBF5EC',
+                        paper: '#FFFDF8',
+                        brown: '#2D1C16',
+                        brown2: '#432921',
+                        terracotta: '#C95C35',
+                        terracottaDark: '#9F4023',
+                        saffron: '#E79A19',
+                        gold: '#D9A441',
+                        sage: '#66705A',
+                        sand: '#E9D6BF'
+                    },
+                    fontFamily: {
+                        display: ['Playfair Display', 'serif'],
+                        sans: ['DM Sans', 'sans-serif']
+                    },
+                    boxShadow: {
+                        soft: '0 15px 50px rgba(45,28,22,.08)',
+                        warm: '0 20px 70px rgba(201,92,53,.18)'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: #FBF5EC;
+            color: #2D1C16;
+            font-family: 'DM Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .font-display {
+            font-family: 'Playfair Display', serif;
+        }
+
+        ::selection {
+            background: #C95C35;
+            color: white;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #F2E7D8;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #C95C35;
+            border-radius: 99px;
+        }
+
+        .grain {
+            position: relative;
+        }
+
+        .grain::after {
+            content: "";
+            pointer-events: none;
+            position: absolute;
+            inset: 0;
+            opacity: .035;
+            background-image:
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.6'/%3E%3C/svg%3E");
+        }
+
+        .hero-pattern {
+            background-image:
+                radial-gradient(circle at 20% 20%, rgba(231,154,25,.16) 0 2px, transparent 3px),
+                radial-gradient(circle at 80% 70%, rgba(201,92,53,.13) 0 2px, transparent 3px);
+            background-size: 38px 38px, 50px 50px;
+        }
+
+        .mandala {
+            border: 1px solid rgba(231,154,25,.25);
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        .mandala::before,
+        .mandala::after {
+            content: "";
+            position: absolute;
+            inset: 12%;
+            border: 1px dashed rgba(231,154,25,.3);
+            border-radius: 50%;
+        }
+
+        .mandala::after {
+            inset: 25%;
+            border-style: solid;
+        }
+
+        .hero-image {
+            animation: heroFloat 8s ease-in-out infinite;
+        }
+
+        @keyframes heroFloat {
+            0%, 100% { transform: translateY(0) rotate(1deg); }
+            50% { transform: translateY(-12px) rotate(-1deg); }
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(25px);
+            animation: fadeUp .8s ease forwards;
+        }
+
+        .delay-1 { animation-delay: .1s; }
+        .delay-2 { animation-delay: .2s; }
+        .delay-3 { animation-delay: .3s; }
+        .delay-4 { animation-delay: .4s; }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .image-hover {
+            overflow: hidden;
+        }
+
+        .image-hover img {
+            transition: transform .7s cubic-bezier(.2,.8,.2,1);
+        }
+
+        .image-hover:hover img {
+            transform: scale(1.08);
+        }
+
+        .menu-card {
+            transition: transform .35s ease, box-shadow .35s ease;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 50px rgba(45,28,22,.12);
+        }
+
+        .menu-item-hidden {
+            display: none !important;
+        }
+
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -7px;
+            height: 2px;
+            background: #E79A19;
+            transform: scaleX(0);
+            transform-origin: center;
+            transition: transform .25s ease;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            transform: scaleX(1);
+        }
+
+        .section-kicker::before,
+        .section-kicker::after {
+            content: "";
+            width: 32px;
+            height: 1px;
+            background: #C95C35;
+            display: inline-block;
+            vertical-align: middle;
+            margin: 0 10px;
+        }
+
+        .scroll-indicator {
+            animation: bounce 1.8s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(7px); }
+        }
+
+        .offer-glow {
+            box-shadow: 0 0 0 1px rgba(231,154,25,.2),
+                        0 20px 70px rgba(231,154,25,.14);
+        }
+
+        .gallery-tile {
+            cursor: pointer;
+        }
+
+        .modal {
+            opacity: 0;
+            visibility: hidden;
+            transition: .3s ease;
+        }
+
+        .modal.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            transform: scale(.94);
+            transition: .3s ease;
+        }
+
+        .modal.show .modal-content {
+            transform: scale(1);
+        }
+
+        .floating-chai {
+            animation: chaiFloat 4s ease-in-out infinite;
+        }
+
+        @keyframes chaiFloat {
+            0%,100% { transform: translateY(0) rotate(-2deg); }
+            50% { transform: translateY(-8px) rotate(2deg); }
+        }
+
+        .steam {
+            animation: steam 2.8s ease-in-out infinite;
+            transform-origin: bottom;
+        }
+
+        @keyframes steam {
+            0% { opacity: 0; transform: translateY(10px) scale(.8); }
+            40% { opacity: .6; }
+            100% { opacity: 0; transform: translateY(-18px) scale(1.15); }
+        }
+
+        .counter-number {
+            font-variant-numeric: tabular-nums;
+        }
+
+        @media (max-width: 768px) {
+            .hero-image {
+                animation: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- =========================================================
+     NAVIGATION
+========================================================= -->
+
+<header id="navbar"
+        class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-brown/95 backdrop-blur-xl border-b border-white/10">
+
+    <div class="max-w-7xl mx-auto px-5 lg:px-8">
+        <div class="h-20 flex items-center justify-between">
+
+            <button onclick="showPage('home')"
+                    class="flex items-center gap-3 text-left">
+
+                <div class="w-11 h-11 rounded-full bg-gradient-to-br from-terracotta to-saffron flex items-center justify-center text-white shadow-lg">
+                    <i class="fa-solid fa-mug-hot text-lg"></i>
+                </div>
+
+                <div>
+                    <div class="font-display text-2xl font-bold text-saffron">
+                        Musafir
+                    </div>
+                    <div class="text-[9px] uppercase tracking-[.28em] text-white/60 -mt-1">
+                        Cafe & Chai Ghar
+                    </div>
+                </div>
+            </button>
+
+            <nav class="hidden lg:flex items-center gap-8 text-sm font-medium text-white/80">
+
+                <button class="nav-link active" data-page="home"
+                        onclick="showPage('home')">
+                    Home
+                </button>
+
+                <button class="nav-link" data-page="menu"
+                        onclick="showPage('menu')">
+                    Menu
+                </button>
+
+                <button class="nav-link" data-page="gallery"
+                        onclick="showPage('gallery')">
+                    Gallery
+                </button>
+
+                <button class="nav-link" data-page="about"
+                        onclick="showPage('about')">
+                    Our Story
+                </button>
+
+                <button class="nav-link" data-page="contact"
+                        onclick="showPage('contact')">
+                    Contact
+                </button>
+
+            </nav>
+
+            <div class="hidden md:flex items-center gap-4">
+
+                <button onclick="showPage('contact')"
+                        class="bg-terracotta hover:bg-terracottaDark text-white rounded-full px-5 py-2.5 text-sm font-semibold transition-all hover:-translate-y-0.5 shadow-lg">
+                    <i class="fa-regular fa-calendar mr-2"></i>
+                    Reserve Table
+                </button>
+
+            </div>
+
+            <button id="mobileBtn"
+                    onclick="toggleMobile()"
+                    class="lg:hidden text-white text-xl w-10 h-10 rounded-full hover:bg-white/10">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Mobile navigation -->
+
+    <div id="mobileMenu"
+         class="hidden lg:hidden bg-brown2 border-t border-white/10 px-5 py-5">
+
+        <div class="grid gap-2">
+
+            <button onclick="mobileNavigate('home')"
+                    class="mobile-nav">
+                Home
+            </button>
+
+            <button onclick="mobileNavigate('menu')"
+                    class="mobile-nav">
+                Menu
+            </button>
+
+            <button onclick="mobileNavigate('gallery')"
+                    class="mobile-nav">
+                Gallery
+            </button>
+
+            <button onclick="mobileNavigate('about')"
+                    class="mobile-nav">
+                Our Story
+            </button>
+
+            <button onclick="mobileNavigate('contact')"
+                    class="mobile-nav">
+                Contact & Reservations
+            </button>
+
+        </div>
+    </div>
+</header>
+
+
+<!-- =========================================================
+     PAGE CONTAINER
+========================================================= -->
+
+<main>
+
+<!-- =========================================================
+     HOME
+========================================================= -->
+
+<section id="page-home" class="page">
+
+    <!-- HERO -->
+
+    <section class="relative min-h-[760px] lg:min-h-[850px] bg-brown text-white overflow-hidden grain hero-pattern">
+
+        <div class="absolute inset-0">
+
+            <img src="https://images.unsplash.com/photo-1601050690117-94f5f6fa8bd7?auto=format&fit=crop&w=2200&q=85"
+                 class="w-full h-full object-cover opacity-45"
+                 alt="Indian food at Musafir Cafe">
+
+            <div class="absolute inset-0 bg-gradient-to-r from-brown via-brown/90 to-brown/40"></div>
+
+            <div class="absolute inset-0 bg-gradient-to-t from-brown via-transparent to-brown/30"></div>
+
+        </div>
+
+        <!-- decorative circles -->
+
+        <div class="mandala w-[450px] h-[450px] -right-40 top-28 opacity-60"></div>
+        <div class="mandala w-[250px] h-[250px] right-10 top-52 opacity-40"></div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-5 lg:px-8 pt-40 pb-20">
+
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+
+                <!-- Hero copy -->
+
+                <div class="max-w-2xl">
+
+                    <div class="fade-up inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/15 backdrop-blur-md text-saffron text-xs uppercase tracking-[.18em] font-bold mb-6">
+                        <span class="w-2 h-2 rounded-full bg-saffron animate-pulse"></span>
+                        Indian flavours • traveller's soul
+                    </div>
+
+                    <h1 class="fade-up delay-1 font-display text-5xl sm:text-6xl lg:text-8xl font-bold leading-[.95] mb-7">
+                        Come for the
+                        <span class="text-saffron italic">chai.</span>
+                        <br>
+                        Stay for the
+                        <span class="text-terracotta">stories.</span>
+                    </h1>
+
+                    <p class="fade-up delay-2 text-lg lg:text-xl leading-relaxed text-white/75 max-w-xl mb-9">
+                        A warm little corner inspired by India's roads,
+                        railway platforms, old bazaars and unforgettable
+                        cups of chai.
+                    </p>
+
+                    <div class="fade-up delay-3 flex flex-wrap gap-4">
+
+                        <button onclick="showPage('menu')"
+                                class="px-7 py-4 bg-saffron text-brown rounded-full font-bold hover:bg-white transition-all hover:-translate-y-1 shadow-xl">
+                            Explore the Menu
+                            <i class="fa-solid fa-arrow-right ml-2"></i>
+                        </button>
+
+                        <button onclick="showPage('contact')"
+                                class="px-7 py-4 border border-white/30 bg-white/5 backdrop-blur-md rounded-full font-bold hover:bg-white hover:text-brown transition-all">
+                            Book a Table
+                        </button>
+
+                    </div>
+
+                    <div class="fade-up delay-4 flex items-center gap-8 mt-12 text-sm">
+
+                        <div>
+                            <div class="text-saffron text-xl mb-1">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <span class="text-white/60">Loved by chai lovers</span>
+                        </div>
+
+                        <div class="h-10 w-px bg-white/15"></div>
+
+                        <div>
+                            <div class="font-display text-2xl font-bold">25+</div>
+                            <span class="text-white/60">Chai blends</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Hero photo composition -->
+
+                <div class="hidden lg:block relative h-[570px]">
+
+                    <div class="absolute top-10 right-5 w-[390px] h-[510px] rounded-[2rem] overflow-hidden border-8 border-white/10 shadow-2xl hero-image">
+
+                        <img src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=1000&q=85"
+                             alt="Kulhad chai"
+                             class="w-full h-full object-cover">
+
+                        <div class="absolute inset-0 bg-gradient-to-t from-brown/80 via-transparent to-transparent"></div>
+
+                        <div class="absolute bottom-7 left-7 right-7">
+
+                            <div class="text-saffron text-xs uppercase tracking-[.2em] font-bold mb-2">
+                                Signature
+                            </div>
+
+                            <div class="font-display text-3xl font-bold">
+                                Adrak Elaichi
+                                <br>
+                                Kulhad Chai
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="absolute left-0 bottom-10 w-56 rounded-2xl overflow-hidden border-4 border-white/10 shadow-xl rotate-[-5deg]">
+
+                        <img src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=700&q=85"
+                             class="w-full h-56 object-cover"
+                             alt="Indian biryani">
+
+                    </div>
+
+                    <div class="absolute right-0 top-0 bg-white text-brown rounded-2xl p-5 shadow-2xl w-48">
+
+                        <div class="text-terracotta text-2xl mb-2">
+                            <i class="fa-solid fa-heart"></i>
+                        </div>
+
+                        <div class="font-display font-bold text-xl">
+                            Made like home.
+                        </div>
+
+                        <p class="text-xs text-brown/60 mt-1">
+                            Served with warmth.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/50 text-xs uppercase tracking-[.3em] scroll-indicator">
+            Scroll
+            <i class="fa-solid fa-chevron-down ml-2"></i>
+        </div>
+
+    </section>
+
+
+    <!-- INTRO -->
+
+    <section class="py-20 lg:py-28 bg-cream">
+
+        <div class="max-w-7xl mx-auto px-5 lg:px-8">
+
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+                <div class="relative">
+
+                    <div class="grid grid-cols-2 gap-4">
+
+                        <div class="space-y-4 pt-12">
+
+                            <div class="image-hover rounded-3xl overflow-hidden shadow-soft h-64">
+                                <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=85"
+                                     class="w-full h-full object-cover"
+                                     alt="Indian samosa">
+                            </div>
+
+                            <div class="image-hover rounded-3xl overflow-hidden shadow-soft h-44">
+                                <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=900&q=85"
+                                     class="w-full h-full object-cover"
+                                     alt="Indian thali">
+                            </div>
+
+                        </div>
+
+                        <div class="space-y-4">
+
+                            <div class="image-hover rounded-3xl overflow-hidden shadow-soft h-44">
+                                <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=900&q=85"
+                                     class="w-full h-full object-cover"
+                                     alt="Cafe interior">
+                            </div>
+
+                            <div class="image-hover rounded-3xl overflow-hidden shadow-soft h-64">
+                                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=900&q=85"
+                                     class="w-full h-full object-cover"
+                                     alt="People at cafe">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="absolute -bottom-5 -right-5 bg-saffron text-brown rounded-full w-28 h-28 flex flex-col items-center justify-center text-center shadow-xl rotate-6">
+                        <i class="fa-solid fa-mug-hot text-xl"></i>
+                        <span class="text-[10px] font-bold uppercase mt-1">Since</span>
+                        <span class="font-display font-bold text-lg leading-none">2021</span>
+                    </div>
+
+                </div>
+
+
+                <div>
+
+                    <div class="section-kicker text-terracotta uppercase tracking-[.18em] text-xs font-bold mb-5">
+                        Welcome to Musafir
+                    </div>
+
+                    <h2 class="font-display text-4xl lg:text-6xl font-bold leading-tight mb-6">
+                        A café for
+                        <span class="italic text-terracotta">wanderers</span>,
+                        dreamers & food lovers.
+                    </h2>
+
+                    <p class="text-brown/65 text-lg leading-relaxed mb-5">
+                        Musafir means traveller. Our cafe is inspired by the
+                        little discoveries that make a journey memorable —
+                        an unexpected chai stall, a plate of hot samosas,
+                        music from a nearby radio and conversations with
+                        complete strangers.
+                    </p>
+
+                    <p class="text-brown/65 leading-relaxed mb-8">
+                        We bring those moments together under one roof,
+                        with recipes inspired by kitchens from across India.
+                    </p>
+
+                    <div class="grid grid-cols-3 gap-5 border-y border-brown/10 py-7 mb-8">
+
+                        <div>
+                            <div class="counter-number font-display text-3xl font-bold text-terracotta">25+</div>
+                            <div class="text-xs text-brown/55 mt-1">Chai blends</div>
+                        </div>
+
+                        <div>
+                            <div class="counter-number font-display text-3xl font-bold text-terracotta">40+</div>
+                            <div class="text-xs text-brown/55 mt-1">Desi dishes</div>
+                        </div>
+
+                        <div>
+                            <div class="counter-number font-display text-3xl font-bold text-terracotta">15K+</div>
+                            <div class="text-xs text-brown/55 mt-1">Happy guests</div>
+                        </div>
+
+                    </div>
+
+                    <button onclick="showPage('about')"
+                            class="font-bold text-terracotta hover:text-terracottaDark">
+                        Discover our story
+                        <i class="fa-solid fa-arrow-right ml-2"></i>
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FEATURED MENU -->
+
+    <section class="py-20 lg:py-28 bg-paper">
+
+        <div class="max-w-7xl mx-auto px-5 lg:px-8">
+
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-5 mb-12">
+
+                <div>
+
+                    <div class="section-kicker text-terracotta uppercase tracking-[.18em] text-xs font-bold mb-4">
+                        From our kitchen
+                    </div>
+
+                    <h2 class="font-display text-4xl lg:text-5xl font-bold">
+                        Favourites of the house
+                    </h2>
+
+                </div>
+
+                <button onclick="showPage('menu')"
+                        class="text-terracotta font-bold">
+                    See full menu
+                    <i class="fa-solid fa-arrow-right ml-2"></i>
+                </button>
+
+            </div>
+
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                <!-- Dish -->
+
+                <article class="menu-card bg-cream rounded-3xl overflow-hidden border border-brown/5">
+
+                    <div class="h-64 image-hover relative">
+
+                        <img src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=900&q=85"
+                             class="w-full h-full object-cover"
+                             alt="Shahi biryani">
+
+                        <span class="absolute top-4 left-4 bg-saffron text-brown text-xs font-bold px-3 py-1.5 rounded-full">
+                            Bestseller
+                        </span>
+
+                    </div>
+
+                    <div class="p-6">
+
+                        <div class="flex justify-between gap-3 mb-2">
+                            <h3 class="font-display text-xl font-bold">Shahi Dum Biryani</h3>
+                            <span class="font-bold text-terracotta">₹345</span>
+                        </div>
+
+                        <p class="text-sm text-brown/55 leading-relaxed">
+                            Fragrant basmati, vegetables, saffron,
+                            caramelised onions and aromatic spices.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <article class="menu-card bg-cream rounded-3xl overflow-hidden border border-brown/5">
+
+                    <div class="h-64 image-hover relative">
+
+                        <img src="https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=900&q=85"
+                             class="w-full h-full object-cover"
+                             alt="Paneer tikka">
+
+                        <span class="absolute top-4 left-4 bg-white/95 text-terracotta text-xs font-bold px-3 py-1.5 rounded-full">
+                            Chef's Pick
+                        </span>
+
+                    </div>
+
+                    <div class="p-6">
+
+                        <div class="flex justify-between gap-3 mb-2">
+                            <h3 class="font-display text-xl font-bold">Malai Paneer Tikka</h3>
+                            <span class="font-bold text-terracotta">₹280</span>
+                        </div>
+
+                        <p class="text-sm text-brown/55 leading-relaxed">
+                            Creamy paneer marinated with cashew,
+                            yogurt and subtle tandoori spices.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <article class="menu-card bg-cream rounded-3xl overflow-hidden border border-brown/5">
+
+                    <div class="h-64 image-hover relative">
+
+                        <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=85"
+                             class="w-full h-full object-cover"
+                             alt="Samosa chaat">
+
+                    </div>
+
+                    <div class="p-6">
+
+                        <div class="flex justify-between gap-3 mb-2">
+                            <h3 class="font-display text-xl font-bold">Samosa Chaat</h3>
+                            <span class="font-bold text-terracotta">₹160</span>
+                        </div>
+
+                        <p class="text-sm text-brown/55 leading-relaxed">
+                            Crisp samosa, chickpea curry, yoghurt,
+                            mint chutney, tamarind and sev.
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <article class="menu-card bg-cream rounded-3xl overflow-hidden border border-brown/5">
+
+                    <div class="h-64 image-hover relative">
+
+                        <img src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=900&q=85"
+                             class="w-full h-full object-cover"
+                             alt="Kulhad chai">
+
+                        <span class="absolute top-4 left-4 bg-terracotta text-white text-xs font-bold px-3 py-1.5 rounded-full">
+                            Signature
+                        </span>
+
+                    </div>
+
+                    <div class="p-6">
+
+                        <div class="flex justify-between gap-3 mb-2">
+                            <h3 class="font-display text-xl font-bold">Kulhad Chai</h3>
+                            <span class="font-bold text-terracotta">₹90</span>
+                        </div>
+
+                        <p class="text-sm text-brown/55 leading-relaxed">
+                            Slow-boiled milk tea with ginger,
+                            cardamom and our secret spice blend.
+                        </p>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- EXPERIENCE STRIP -->
+
+    <section class="py-20 bg-brown text-white relative overflow-hidden">
+
+        <div class="absolute inset-0 opacity-10 hero-pattern"></div>
+
+        <div class="max-w-7xl mx-auto px-5 lg:px-8 relative">
+
+            <div class="text-center mb-14">
+
+                <div class="text-saffron text-xs uppercase tracking-[.2em] font-bold mb-4">
+                    More than a meal
+                </div>
+
+                <h2 class="font-display text-4xl lg:text-5xl font-bold">
+                    The Musafir experience
+                </h2>
+
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+
+                <div class="bg-white/5 border border-white/10 rounded-3xl p-8 text-center hover:bg-white/10 transition">
+
+                    <div class="w-16 h-16 rounded-2xl bg-terracotta mx-auto flex items-center justify-center text-2xl mb-6">
+                        <i class="fa-solid fa-mug-hot"></i>
+                    </div>
+
+                    <h3 class="font-display text-2xl font-bold mb-3">
+                        Chai Rituals
+                    </h3>
+
+                    <p class="text-white/60 leading-relaxed">
+                        Earthen kulhads, fresh spices and slow brewing —
+                        because good chai deserves time.
+                    </p>
+
+                </div>
+
+
+                <div class="bg-white/5 border border-white/10 rounded-3xl p-8 text-center hover:bg-white/10 transition">
+
+                    <div class="w-16 h-16 rounded-2xl bg-saffron text-brown mx-auto flex items-center justify-center text-2xl mb-6">
+                        <i class="fa-solid fa-utensils"></i>
+                    </div>
+
+                    <h3 class="font-display text-2xl font-bold mb-3">
+                        Desi Comfort Food
+                    </h3>
+
+                    <p class="text-white/60 leading-relaxed">
+                        Recipes inspired by home kitchens,
+                        railway stations and India's bustling streets.
+                    </p>
+
+                </div>
+
+
+                <div class="bg-white/5 border border-white/10 rounded-3xl p-8 text-center hover:bg-white/10 transition">
+
+                    <div class="w-16 h-16 rounded-2xl bg-sage mx-auto flex items-center justify-center text-2xl mb-6">
+                        <i class="fa-solid fa-music"></i>
+                    </div>
+
+                    <h3 class="font-display text-2xl font-bold mb-3">
+                        Slow Evenings
+                    </h3>
+
+                    <p class="text-white/60 leading-relaxed">
+                        Acoustic music, poetry, books and conversations
+                        that last longer than your coffee.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- OFFER -->
+
+    <section class="py-20 bg-cream">
+
+        <div class="max-w-6xl mx-auto px-5 lg:px-8">
+
+            <div class="relative rounded-[2rem] overflow-hidden bg-terracotta offer-glow">
+
+                <div class="absolute inset-0">
+
+                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1800&q=80"
+                         class="w-full h-full object-cover opacity-20"
+                         alt="Cafe atmosphere">
+
+                </div>
+
+                <div class="relative grid md:grid-cols-2 gap-10 items-center p-8 sm:p-12 lg:p-16">
+
+                    <div class="text-white">
+
+                        <span class="text-saffron font-bold text-xs uppercase tracking-[.2em]">
+                            This week at Musafir
+                        </span>
+
+                        <h2 class="font-display text-4xl lg:text-5xl font-bold mt-3 mb-4">
+                            Chai & Chaat
+                            <span class="italic">evening.</span>
+                        </h2>
+
+                        <p class="text-white/75 leading-relaxed max-w-lg">
+                            Two kulhad chais + one loaded chaat platter
+                            for an easy evening with your favourite people.
+                        </p>
+
+                    </div>
+
+                    <div class="md:text-right">
+
+                        <div class="inline-block bg-white text-brown rounded-2xl p-6 text-left shadow-2xl">
+
+                            <div class="text-xs uppercase tracking-widest text-terracotta font-bold">
+                                Evening combo
+                            </div>
+
+                            <div class="font-display text-5xl font-bold mt-1">
+                                ₹299
+                            </div>
+
+                            <div class="text-sm text-brown/50 mt-1">
+                                4:00 PM — 7:00 PM
+                            </div>
+
+                            <button onclick="showPage('contact')"
+                                    class="mt-5 w-full bg-brown text-white rounded-xl py-3 font-bold hover:bg-brown2">
+                                Reserve now
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- TESTIMONIALS -->
+
+    <section class="py-20 lg:py-28 bg-paper">
+
+        <div class="max-w-7xl mx-auto px-5 lg:px-8">
+
+            <div class="text-center max-w-2xl mx-auto mb-14">
+
+                <div class="section-kicker text-terracotta uppercase tracking-[.18em] text-xs font-bold mb-4">
+                    Words from our guests
+                </div>
+
+                <h2 class="font-display text-4xl lg:text-5xl font-bold">
+                    Stories shared over chai
+                </h2>
+
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+
+                <article class="bg-cream rounded-3xl p-8 border border-brown/5">
+
+                    <div class="text-saffron mb-5">
+                        ★★★★★
+                    </div>
+
+                    <p class="font-display italic text-xl leading-relaxed mb-7">
+                        “The chai genuinely tastes like something
+                        you'd drink at your grandmother's house.”
+                    </p>
+
+                    <div class="flex items-center gap-3">
+
+                        <div class="w-11 h-11 rounded-full bg-terracotta text-white flex items-center justify-center font-bold">
+                            AS
+                        </div>
+
+                        <div>
+                            <div class="font-bold">Aarav Sharma</div>
+                            <div class="text-xs text-brown/50">Traveller</div>
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <article class="bg-brown text-white rounded-3xl p-8 border border-brown/5">
+
+                    <div class="text-saffron mb-5">
+                        ★★★★★
+                    </div>
+
+                    <p class="font-display italic text-xl leading-relaxed mb-7">
+                        “The perfect place to disappear for two hours
+                        with a book, coffee and absolutely no rush.”
+                    </p>
+
+                    <div class="flex items-center gap-3">
+
+                        <div class="w-11 h-11 rounded-full bg-saffron text-brown flex items-center justify-center font-bold">
+                            PN
+                        </div>
+
+                        <div>
+                            <div class="font-bold">Priya Nair</div>
+                            <div class="text-xs text-white/50">Architect</div>
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <article class="bg-cream rounded-3xl p-8 border border-brown/5">
+
+                    <div class="text-saffron mb-5">
+                        ★★★★★
+                    </div>
+
+                    <p class="font-display italic text-xl leading-relaxed mb-7">
+                        “The samosa chaat, biryani and the atmosphere —
+                        everything feels thoughtfully made.”
+                    </p>
+
+                    <div class="flex items-center gap-3">
+
+                        <div class="w-11 h-11 rounded-full bg-sage text-white flex items-center justify-center font-bold">
+                            RK
+                        </div>
+
+                        <div>
+                            <div class="font-bold">Rohan Kapoor</div>
+                            <div class="text-xs text-brown/50">Food lover</div>
+                        </div>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</section>
+
+
+<!-- =========================================================
+     MENU PAGE
+========================================================= -->
+
+<section id="page-menu" class="page hidden pt-20">
+
+    <div class="bg-brown text-white py-20">
+
+        <div class="max-w-5xl mx-auto px-5 text-center">
+
+            <div class="text-saffron uppercase tracking-[.2em] text-xs font-bold mb-4">
+                Our kitchen
+            </div>
+
+            <h1 class="font-display text-5xl lg:text-7xl font-bold">
+                The Musafir Menu
+            </h1>
+
+            <p class="text-white/60 max-w-2xl mx-auto mt-5 text-lg">
+                Street food, homestyle comfort, regional recipes,
+                chai rituals and sweet endings.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <section class="py-16 bg-cream">
+
+        <div class="max-w-7xl mx-auto px-5 lg:px-8">
+
+            <!-- Filters -->
+
+            <div id="menuFilters"
+                 class="flex flex-wrap justify-center gap-3 mb-12">
+
+                <button onclick="filterMenu('all', this)"
+                        class="menu-filter active-filter">
+                    All
+                </button>
+
+                <button onclick="filterMenu('chai', this)"
+                        class="menu-filter">
+                    Chai & Coffee
+                </button>
+
+                <button onclick="filterMenu('breakfast', this)"
+                        class="menu-filter">
+                    Breakfast
+                </button>
+
+                <button onclick="filterMenu('snacks', this)"
+                        class="menu-filter">
+                    Street Bites
+                </button>
+
+                <button onclick="filterMenu('mains', this)"
+                        class="menu-filter">
+                    Main Course
+                </button>
+
+                <button onclick="filterMenu('thali', this)"
+                        class="menu-filter">
+                    Thalis
+                </button>
+
+                <button onclick="filterMenu('dessert', this)"
+                        class="menu-filter">
+                    Desserts
+                </button>
+
+                <button onclick="filterMenu('drinks', this)"
+                        class="menu-filter">
+                    Coolers
+                </button>
+
+            </div>
+
+            <div class="menu-search-wrap">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input id="menuSearch" type="search"
+                       placeholder="Search biryani, chai, paneer, dessert..."
+                       autocomplete="off" oninput="searchMenu(this.value)">
+                <button id="clearMenuSearch" type="button" onclick="clearMenuSearch()" aria-label="Clear search">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div id="menuMeta" class="menu-meta">Showing all menu items</div>
+
+            <div id="menuGrid"
+                 class="grid md:grid-cols-2 gap-6">
+
+
+                <!-- CHAI -->
+
+                <div class="menu-product" data-category="chai">
+                    <img src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=700&q=88" alt="Kulhad chai">
+                    <div class="menu-product-content">
+                        <div class="flex justify-between gap-3">
+                            <h3>Adrak Elaichi Kulhad Chai</h3>
+                            <strong>₹90</strong>
+                        </div>
+                        <p>Ginger, cardamom and whole spices brewed slowly in milk tea.</p>
+                        <span>Signature</span>
+                    </div>
+                </div>
+
+
+                <div class="menu-product" data-category="chai">
+                    <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&w=700&q=88" alt="Kashmiri kahwa">
+                    <div class="menu-product-content">
+                        <div class="flex justify-between gap-3">
+                            <h3>Kashmiri Saffron Kahwa</h3>
+                            <strong>₹140</strong>
+                        </div>
+                        <p>Green tea, saffron, cinnamon, cardamom and almonds.</p>
+                        <span>Premium</span>
+                    </div>
+                </div>
+
+
+                <div class="menu-product" data-category="chai">
+                    <img src="https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?auto=format&fit=crop&w=700&q=88" alt="Filter coffee">
+                    <div class="menu-product-content">
+                        <div class="flex justify-between gap-3">
+                            <h3>South Indian Filter Coffee</h3>
+                            <strong>₹110</strong>
+                        </div>
+                        <p>Strong aromatic decoction with frothy milk.</p>
+                    </div>
+                </div>
+
+
+                <div class="menu-product" data-category="chai">
+                    <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=700&q=88" alt="Masala tea">
+                    <div class="menu-product-content">
+                        <div class="flex justify-between gap-3">
+                            <h3>Musafir Masala Chai</h3>
+                            <strong>₹80</strong>
+                        </div>
+                        <p>House masala, black tea, ginger, pepper and cardamom.</p>
+                    </div>
+                </div>
+
+
+                <!-- BREAKFAST -->
+
+                <div class="menu-product" data-category="breakfast">
+                    <img src="https://images.unsplash.com/photo-1601050690117-94f5f6fa8bd7?auto=format&fit=crop&w=700&q=88" alt="Paratha">
+                    <div class="menu-product-content">
+                        <div class="flex justify-between gap-3">
+                            <h3>Amritsari Aloo Paratha</h3>
+                            <strong>₹180</strong>
+                        </div>
+                        <p>Stuffed potato paratha with curd, pickle and white butter.</p>
+                    </div>
+                </div>
+
+
+                <div class="menu-product" data-category="breakfast">
+                    <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=600&q=85" alt="Poha">
+                    <div class="menu-product-content">
+                        <div class="flex justify-between gap-3">
+                            <h3>Indori Poha</h3>
+                            <strong>₹120</strong>
+                        </div>
+                        <p>Light poha with peanuts, sev, coriander and lemon.</p>
+                    </div>
+                </div>
+
+
+                <div class="menu-product" data-category="breakfast">
+                    <img src="https://images.unsplash.com/photo-1630383249896-424e482df921?auto=format&fit=crop&w=700&q=88" alt="Dosa">
+                    <div class="menu-product-content">
+                        <div class="flex justify-between gap-3">
+                            <h3>Masala Dosa</h3>
+                            <strong>₹190</strong>
+                        </div>
+                        <p>Crisp dosa filled with spiced potato masala, sambar and chutneys.</p>
+                    </div>
+                </div>
+
+
+                <div class="menu-product" data-category="breakfast">
+                    <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=600&q=85" alt="Chole bhature">
+                    <div class="menu-product-content">
+                        <div class="flex justify-between gap-3">
+                            <h3>Delhi Chole Bhature</h3>
+                            <strong>₹220</strong>
+                        </div>
+                        <p>Spiced chickpeas with fluffy bhatura and pickled onions.</p>
+                    </div>
+                </div>
+
+
+                <!-- STREET FOOD -->
+
+                <div class="menu-product" data-category="snacks">
+                    <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=700&q=88" alt="Samosa chaat">
+                    <div class="menu-product-content">
+                        <div class="flex justify-between gap-3">
+                            <h3>Punjabi Samosa Chaat</h3>
+                            <strong>₹160</strong>
+                        </div>
+                        <p>Samosa, chickpea curry, yogurt, chutneys and sev.</p>
+                        <span>Bestseller</span>
+                    </div>
+                </div>
+
+
+                <div class="menu-product" data-category="snacks">
+                    <img src="https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=700&q=88" alt="Paneer tikka">
+                    <div class="menu-product-content">
+                        <div class="flex justify-between gap-3">
+                            <h3>Tandoori Malai Paneer</h3>
+                            <strong>₹280</strong>
+                        </div>
+                        <p>Cashew-marinated paneer charred in our clay oven.</p>
+                    </div>
+                </div>
+
+
+                <div class="menu-product" data-category="snacks">
+                    <img src="https://images.unsplash.com/photo-1601050690117-94f5f6fa8bd7?auto=format&fit=crop&w=600&q=85" alt="Pav bhaji">
+                    <div class="menu-product-content">
+                        <div class="flex justify-between gap-3">
+                            <h3>Mumbai Masala Pav Bhaji</h3>
+                            <strong>₹210</strong>
+                        </div>
+                        <p>Buttery vegetable bhaji served with toasted pav.</p>
+                    </div>
+                </div>
+
+
+                <div class="menu-product" data-category="snacks">
+                    <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=600&q=85" alt="Kachori">
+                    <div class="menu-product-content">
+                        <div class="flex justify-between gap-3">
+                            <h3>Rajasthani Pyaz Kachori</h3>
+                            <strong>₹150</strong>
+                        </div>
+                        <p>Crispy kachori stuffed with spicy onion masala.</p>
+                    </div>
+                </div>
+
+
+                <div class="menu-product" data-category="snacks">
+                    <img src="https://images.unsplash.com/photo-1567337710282-00832b415979?auto=format&fit=crop&w=700&q=88" alt="Pakora">
+                    <div class="menu-product-content">
+                        <div class="flex justify-between gap-3">
+                            <h3>Monsoon Pakora Basket</h3>
+                            <strong>₹190</strong>
+                        </div>
+                        <p>Onion, spinach and chilli pakoras with mint chutney.</p>
+                    </div>
+                </div>
+
+
+                <!-- MAINS -->
+
+                <div class="menu-product" data-category="mains">
+                    <img src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=700&q=88" alt="Biryani">
+                    <div class="menu-product-content">
+                        <div class="flex justify-between gap-3">
+                            <h3>Shahi Dum Biryani</h3>
+                            <strong>₹345</strong>
+                        </div>
+                        <p>Saffron basmati, vegetables, caramelised onions and whole spices.</p>
+                        <span>Must Try</span>
+                    </div>
+                </div>
+
+
+                <div class="menu-product" data-category="mains">
+                    <img src="https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?auto=format&fit=crop&w=700&q=88" alt="Dal makhani">
+                    <div class="menu-product-content">
+                        <div class="flex justify-between gap-3">
+                            <h3>Musafir Dal Makhani</h3>
+                            <strong>₹290</strong>
+                        </div>
+                        <p>Slow-cooked black lentils with butter, cream and garlic.</p>
+                    </div>
+                </div>
+
+
+                <div class="menu-product" data-category="mains">
+                    <img src="https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&w=700&q=88" alt="Paneer curry">
+                    <div class="menu-product-content">
+                        <div class="flex justify-between gap-3">
+                            <h3>Paneer Lababdar</h3>
+                            <strong>₹310</strong>
+                        </div>
+                        <p>Soft paneer in a rich tomato, cashew and butter gravy.</p>
+                    </div>
+                </div>
+
+
+                <div class="menu-product" data-category="mains">
+                    <img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&w=700&q=88" alt="Indian curry">
+                    <div class="menu-product-content">
+                        <div class="flex justify-between gap-3">
+                            <h3>Awadhi Vegetable Korma</h3>
+                            <strong>₹295</strong>
+                        </div>
+                        <p>Seasonal vegetables in a fragrant royal-style gravy.</p>
+                    </div>
+                </div>
+
+
+                <div class="menu-product" data-category="mains">
+                    <img src="https://images.unsplash.com/photo-1628294895950-9805252327bc?auto=format&fit=crop&w=700&q=88" alt="Naan">
+                    <div class="menu-product-content">
+                        <div class="flex justify-between gap-3">
+                            <h3>Garlic Butter Naan</h3>
+                            <strong>₹90</strong>
+                        </div>
+                        <p>Tandoor-baked naan brushed with garlic butter and coriander.</p>
+                    </div>
+                </div>
+
+
+                <!-- THALI -->
+
+                <div class="menu-product" data-category="thali">
+                    <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=700&q=88" alt="Indian thali">
+                    <div class="menu-product-content">
+                        <div class="flex justify-between gap-3">
+                            <h3>Musafir Special Thali</h3>
+                            <strong>₹420</strong>
+                        </div>
+                        <p>Dal, paneer, pulao, naan, raita, salad, pickle and dessert.</p>
+                        <span>Chef's Choice</span>
+                    </div>
+                </div>
+
+
+                <div class="menu-product" data-category="thali">
+                    <img src="https://images.unsplash.com/photo-1601050690117-94f5f6fa8bd7?auto=format&fit=crop&w=600&q=85" alt="Gujarati thali">
+                    <div class="menu-product-content">
+                        <div class="flex justify-between gap-3">
+                            <h3>Gujarati Kathiyawadi Thali</h3>
+                            <strong>₹390</strong>
+                        </div>
+                        <p>Rotla, shaak, dal, kadhi, rice, farsan and seasonal accompaniments.</p>
+                    </div>
+                </div>
+
+
+                <div class="menu-product" data-category="thali">
+                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=600&q=85" alt="South Indian meal">
+                    <div class="menu-product-content">
+                        <div class="flex justify-between gap-3">
+                            <h3>South Indian Mini Meal</h3>
+                            <strong>₹320</strong>
+                        </div>
+                        <p>Rice, sambar, rasam, vegetable poriyal, curd and papad.</p>
+                    </div>
+                </div>
+
+
+                <!-- DESSERTS -->
+
+                <div class="menu-product" data-category="dessert">
+                    <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=600&q=85" alt="Gulab jamun">
+                    <div class="menu-product-content">
+                        <div class="flex justify-between gap-3">
+                            <h3>Saffron Gulab Jamun</h3>
+                            <strong>₹120</strong>
+                        </div>
+                        <p>Warm gulab jamun with saffron, rose and cardamom syrup.</p>
+                    </div>
+                </div>
+
+
+                <div class="menu-product" data-category="dessert">
+                    <img src="https://images.unsplash.com/photo-1571115177098-24ec42ed204d?auto=format&fit=crop&w=700&q=88" alt="Jalebi">
+                    <div class="menu-product-content">
+                        <div class="flex justify-between gap-3">
+                            <h3>Crispy Jalebi & Rabri</h3>
+                            <strong>₹170</strong>
+                        </div>
+                        <p>Hot crisp jalebi paired with chilled thick rabri.</p>
+                    </div>
+                </div>
+
+
+                <div class="menu-product" data-category="dessert">
+                    <img src="https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&w=700&q=88" alt="Kulfi">
+                    <div class="menu-product-content">
+                        <div class="flex justify-between gap-3">
+                            <h3>Matka Malai Kulfi</h3>
+                            <strong>₹150</strong>
+                        </div>
+                        <p>Slow-frozen creamy kulfi with pistachio and saffron.</p>
+                    </div>
+                </div>
+
+
+                <div class="menu-product" data-category="dessert">
+                    <img src="https://images.unsplash.com/photo-1599785209707-a456fc1337bb?auto=format&fit=crop&w=600&q=85" alt="Gajar halwa">
+                    <div class="menu-product-content">
+                        <div class="flex justify-between gap-3">
+                            <h3>Winter Gajar Halwa</h3>
+                            <strong>₹140</strong>
+                        </div>
+                        <p>Slow-cooked carrots, khoya, cardamom and nuts.</p>
+                    </div>
+                </div>
+
+
+                <!-- COOLERS -->
+
+                <div class="menu-product" data-category="drinks">
+                    <img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=700&q=88" alt="Lassi">
+                    <div class="menu-product-content">
+                        <div class="flex justify-between gap-3">
+                            <h3>Punjabi Sweet Lassi</h3>
+                            <strong>₹130</strong>
+                        </div>
+                        <p>Thick chilled yoghurt drink topped with malai and pistachio.</p>
+                    </div>
+                </div>
+
+
+                <div class="menu-product" data-category="drinks">
+                    <img src="https://images.unsplash.com/photo-1546173159-315724a31696?auto=format&fit=crop&w=700&q=88" alt="Mango lassi">
+                    <div class="menu-product-content">
+                        <div class="flex justify-between gap-3">
+                            <h3>Alphonso Mango Lassi</h3>
+                            <strong>₹160</strong>
+                        </div>
+                        <p>Seasonal mango blended with creamy yoghurt.</p>
+                    </div>
+                </div>
+
+
+                <div class="menu-product" data-category="drinks">
+                    <img src="https://images.unsplash.com/photo-1497534446932-c925b458314e?auto=format&fit=crop&w=700&q=88" alt="Lime cooler">
+                    <div class="menu-product-content">
+                        <div class="flex justify-between gap-3">
+                            <h3>Masala Nimbu Soda</h3>
+                            <strong>₹100</strong>
+                        </div>
+                        <p>Fresh lime, soda, black salt and roasted cumin.</p>
+                    </div>
+                </div>
+
+
+                <div class="menu-product" data-category="drinks">
+                    <img src="https://images.unsplash.com/photo-1505252585461-04db1eb84625?auto=format&fit=crop&w=700&q=88" alt="Fruit cooler">
+                    <div class="menu-product-content">
+                        <div class="flex justify-between gap-3">
+                            <h3>Jamun Berry Cooler</h3>
+                            <strong>₹150</strong>
+                        </div>
+                        <p>Jamun, berries, lime and sparkling water.</p>
+                    </div>
+                </div>
+
+
+                <!-- Additional menu items -->
+                <div class="menu-product" data-category="chai">
+                    <img src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=700&q=88" alt="Cutting chai">
+                    <div class="menu-product-content">
+                        <div class="flex justify-between gap-3"><h3>Bombay Cutting Chai</h3><strong>₹70</strong></div>
+                        <p>Strong milky tea served in the classic half-glass Mumbai style.</p>
+                    </div>
+                </div>
+
+                <div class="menu-product" data-category="breakfast">
+                    <img src="https://images.unsplash.com/photo-1630383249896-424e482df921?auto=format&fit=crop&w=700&q=88" alt="Idli sambar">
+                    <div class="menu-product-content">
+                        <div class="flex justify-between gap-3"><h3>Idli Sambar Platter</h3><strong>₹150</strong></div>
+                        <p>Soft steamed idlis with hot sambar, coconut and tomato chutney.</p>
+                    </div>
+                </div>
+
+                <div class="menu-product" data-category="breakfast">
+                    <img src="https://images.unsplash.com/photo-1626132647523-66f5bf380027?auto=format&fit=crop&w=700&q=88" alt="Sabudana khichdi">
+                    <div class="menu-product-content">
+                        <div class="flex justify-between gap-3"><h3>Sabudana Khichdi</h3><strong>₹145</strong></div>
+                        <p>Fluffy tapioca pearls tossed with peanuts, cumin, potato and lemon.</p>
+                    </div>
+                </div>
+
+                <div class="menu-product" data-category="snacks">
+                    <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=700&q=88" alt="Dahi puri">
+                    <div class="menu-product-content">
+                        <div class="flex justify-between gap-3"><h3>Dahi Puri</h3><strong>₹150</strong></div>
+                        <p>Crisp puris filled with potato, yogurt, chutneys and crunchy sev.</p>
+                        <span>Bestseller</span>
+                    </div>
+                </div>
+
+                <div class="menu-product" data-category="snacks">
+                    <img src="https://images.unsplash.com/photo-1567337710282-00832b415979?auto=format&fit=crop&w=700&q=88" alt="Onion bhaji">
+                    <div class="menu-product-content">
+                        <div class="flex justify-between gap-3"><h3>Pyaz Bhajiya</h3><strong>₹130</strong></div>
+                        <p>Golden onion fritters with green chutney and masala chai.</p>
+                    </div>
+                </div>
+
+                <div class="menu-product" data-category="mains">
+                    <img src="https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&w=700&q=88" alt="Kadai paneer">
+                    <div class="menu-product-content">
+                        <div class="flex justify-between gap-3"><h3>Kadai Paneer</h3><strong>₹320</strong></div>
+                        <p>Paneer, peppers and onions tossed in a fragrant freshly ground masala.</p>
+                    </div>
+                </div>
+
+                <div class="menu-product" data-category="mains">
+                    <img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&w=700&q=88" alt="Chole">
+                    <div class="menu-product-content">
+                        <div class="flex justify-between gap-3"><h3>Amritsari Chole</h3><strong>₹240</strong></div>
+                        <p>Slow-spiced chickpeas served with bhatura, onion and pickle.</p>
+                    </div>
+                </div>
+
+                <div class="menu-product" data-category="mains">
+                    <img src="https://images.unsplash.com/photo-1628294895950-9805252327bc?auto=format&fit=crop&w=700&q=88" alt="Tandoori roti">
+                    <div class="menu-product-content">
+                        <div class="flex justify-between gap-3"><h3>Tandoori Roti Basket</h3><strong>₹110</strong></div>
+                        <p>Freshly baked whole-wheat rotis finished with butter and coriander.</p>
+                    </div>
+                </div>
+
+                <div class="menu-product" data-category="thali">
+                    <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=700&q=88" alt="Rajasthani thali">
+                    <div class="menu-product-content">
+                        <div class="flex justify-between gap-3"><h3>Rajasthani Royal Thali</h3><strong>₹440</strong></div>
+                        <p>Dal baati, gatte, seasonal sabzi, rice, rotis, chutney and sweet.</p>
+                        <span>Chef's Choice</span>
+                    </div>
+                </div>
+
+                <div class="menu-product" data-category="dessert">
+                    <img src="https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&w=700&q=88" alt="Rasmalai">
+                    <div class="menu-product-content">
+                        <div class="flex justify-between gap-3"><h3>Rose Pistachio Rasmalai</h3><strong>₹170</strong></div>
+                        <p>Soft chenna dumplings in chilled saffron milk with pistachio.</p>
+                    </div>
+                </div>
+
+                <div class="menu-product" data-category="dessert">
+                    <img src="https://images.unsplash.com/photo-1571115177098-24ec42ed204d?auto=format&fit=crop&w=700&q=88" alt="Rabri">
+                    <div class="menu-product-content">
+                        <div class="flex justify-between gap-3"><h3>Kesar Rabri</h3><strong>₹155</strong></div>
+                        <p>Slow-reduced milk with saffron, cardamom and toasted nuts.</p>
+                    </div>
+                </div>
+
+                <div class="menu-product" data-category="drinks">
+                    <img src="https://images.unsplash.com/photo-1497534446932-c925b458314e?auto=format&fit=crop&w=700&q=88" alt="Aam panna">
+                    <div class="menu-product-content">
+                        <div class="flex justify-between gap-3"><h3>Khatta Meetha Aam Panna</h3><strong>₹120</strong></div>
+                        <p>Raw mango cooler with roasted cumin, mint and black salt.</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</section>
+
+
+<!-- =========================================================
+     GALLERY PAGE
+========================================================= -->
+
+<section id="page-gallery" class="page hidden pt-20">
+
+    <div class="bg-brown text-white py-20">
+
+        <div class="max-w-5xl mx-auto px-5 text-center">
+
+            <div class="text-saffron uppercase tracking-[.2em] text-xs font-bold mb-4">
+                A visual journey
+            </div>
+
+            <h1 class="font-display text-5xl lg:text-7xl font-bold">
+                Moments at Musafir
+            </h1>
+
+            <p class="text-white/60 max-w-2xl mx-auto mt-5">
+                Food, people, warm corners and little moments worth remembering.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <section class="py-16 bg-cream">
+
+        <div class="max-w-7xl mx-auto px-5 lg:px-8">
+
+            <div class="flex flex-wrap justify-center gap-3 mb-10">
+
+                <button onclick="filterGallery('all', this)" class="gallery-filter active-filter">
+                    All
+                </button>
+
+                <button onclick="filterGallery('food', this)" class="gallery-filter">
+                    Food
+                </button>
+
+                <button onclick="filterGallery('space', this)" class="gallery-filter">
+                    Cafe
+                </button>
+
+                <button onclick="filterGallery('people', this)" class="gallery-filter">
+                    People
+                </button>
+
+            </div>
+
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[180px] md:auto-rows-[220px]">
+
+                <div class="gallery-tile gallery-item md:col-span-2 md:row-span-2 rounded-3xl overflow-hidden"
+                     data-category="food"
+                     onclick="openLightbox(this)">
+
+                    <img src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=1200&q=90"
+                         class="w-full h-full object-cover"
+                         alt="Biryani">
+
+                </div>
+
+
+                <div class="gallery-tile gallery-item rounded-3xl overflow-hidden"
+                     data-category="space"
+                     onclick="openLightbox(this)">
+
+                    <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=900&q=90"
+                         class="w-full h-full object-cover"
+                         alt="Cafe interior">
+
+                </div>
+
+
+                <div class="gallery-tile gallery-item rounded-3xl overflow-hidden"
+                     data-category="food"
+                     onclick="openLightbox(this)">
+
+                    <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=90"
+                         class="w-full h-full object-cover"
+                         alt="Samosa">
+
+                </div>
+
+
+                <div class="gallery-tile gallery-item md:col-span-2 rounded-3xl overflow-hidden"
+                     data-category="people"
+                     onclick="openLightbox(this)">
+
+                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1100&q=90"
+                         class="w-full h-full object-cover"
+                         alt="Guests at cafe">
+
+                </div>
+
+
+                <div class="gallery-tile gallery-item rounded-3xl overflow-hidden"
+                     data-category="food"
+                     onclick="openLightbox(this)">
+
+                    <img src="https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=900&q=90"
+                         class="w-full h-full object-cover"
+                         alt="Paneer tikka">
+
+                </div>
+
+
+                <div class="gallery-tile gallery-item rounded-3xl overflow-hidden"
+                     data-category="space"
+                     onclick="openLightbox(this)">
+
+                    <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=900&q=90"
+                         class="w-full h-full object-cover"
+                         alt="Cafe ambience">
+
+                </div>
+
+
+                <div class="gallery-tile gallery-item md:col-span-2 rounded-3xl overflow-hidden"
+                     data-category="food"
+                     onclick="openLightbox(this)">
+
+                    <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=1100&q=90"
+                         class="w-full h-full object-cover"
+                         alt="Indian thali">
+
+                </div>
+
+
+                <div class="gallery-tile gallery-item rounded-3xl overflow-hidden"
+                     data-category="people"
+                     onclick="openLightbox(this)">
+
+                    <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=900&q=90"
+                         class="w-full h-full object-cover"
+                         alt="Friends together">
+
+                </div>
+
+
+                <div class="gallery-tile gallery-item rounded-3xl overflow-hidden"
+                     data-category="food"
+                     onclick="openLightbox(this)">
+
+                    <img src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=900&q=90"
+                         class="w-full h-full object-cover"
+                         alt="Chai">
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</section>
+
+
+<!-- =========================================================
+     ABOUT PAGE
+========================================================= -->
+
+<section id="page-about" class="page hidden pt-20">
+
+    <section class="bg-brown text-white py-24">
+
+        <div class="max-w-5xl mx-auto px-5 text-center">
+
+            <div class="text-saffron uppercase tracking-[.2em] text-xs font-bold mb-4">
+                Our story
+            </div>
+
+            <h1 class="font-display text-5xl lg:text-7xl font-bold">
+                Every traveller has a story.
+            </h1>
+
+            <p class="text-white/60 max-w-2xl mx-auto mt-6 text-lg">
+                Ours began with three friends, a backpack,
+                a railway platform and a love for chai.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <section class="py-20 lg:py-28 bg-paper">
+
+        <div class="max-w-6xl mx-auto px-5 lg:px-8">
+
+            <div class="grid lg:grid-cols-2 gap-14 items-center">
+
+                <div class="image-hover rounded-[2rem] overflow-hidden shadow-soft">
+
+                    <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1200&q=90"
+                         class="w-full h-[550px] object-cover"
+                         alt="Musafir cafe">
+
+                </div>
+
+                <div>
+
+                    <div class="section-kicker text-terracotta uppercase tracking-[.18em] text-xs font-bold mb-5">
+                        Since 2021
+                    </div>
+
+                    <h2 class="font-display text-4xl lg:text-5xl font-bold mb-6">
+                        Inspired by India's roads.
+                    </h2>
+
+                    <p class="text-brown/65 leading-relaxed mb-5">
+                        Musafir Cafe started as a simple idea:
+                        recreate the feeling of discovering a beautiful
+                        roadside cafe during a long journey.
+                    </p>
+
+                    <p class="text-brown/65 leading-relaxed mb-5">
+                        From Assam's tea gardens to the old lanes of Delhi,
+                        from Mumbai's bustling food stalls to Rajasthan's
+                        colourful kitchens, every region gave us something
+                        worth bringing home.
+                    </p>
+
+                    <p class="text-brown/65 leading-relaxed">
+                        Today, Musafir is our little tribute to those
+                        journeys — served one plate and one cup at a time.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="grid md:grid-cols-3 gap-6 mt-20">
+
+                <div class="bg-cream rounded-3xl p-8 text-center">
+
+                    <div class="text-terracotta text-3xl mb-5">
+                        <i class="fa-solid fa-heart"></i>
+                    </div>
+
+                    <h3 class="font-display text-2xl font-bold mb-3">
+                        Made with heart
+                    </h3>
+
+                    <p class="text-sm text-brown/55 leading-relaxed">
+                        Fresh ingredients, house masalas and recipes
+                        that respect their roots.
+                    </p>
+
+                </div>
+
+
+                <div class="bg-cream rounded-3xl p-8 text-center">
+
+                    <div class="text-terracotta text-3xl mb-5">
+                        <i class="fa-solid fa-leaf"></i>
+                    </div>
+
+                    <h3 class="font-display text-2xl font-bold mb-3">
+                        Earth conscious
+                    </h3>
+
+                    <p class="text-sm text-brown/55 leading-relaxed">
+                        Kulhads, local ingredients and thoughtful
+                        choices wherever possible.
+                    </p>
+
+                </div>
+
+
+                <div class="bg-cream rounded-3xl p-8 text-center">
+
+                    <div class="text-terracotta text-3xl mb-5">
+                        <i class="fa-solid fa-music"></i>
+                    </div>
+
+                    <h3 class="font-display text-2xl font-bold mb-3">
+                        Slow living
+                    </h3>
+
+                    <p class="text-sm text-brown/55 leading-relaxed">
+                        Acoustic Fridays, poetry Sundays and evenings
+                        without a clock.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</section>
+
+
+<!-- =========================================================
+     CONTACT
+========================================================= -->
+
+<section id="page-contact" class="page hidden pt-20">
+
+    <div class="bg-brown text-white py-20">
+
+        <div class="max-w-5xl mx-auto px-5 text-center">
+
+            <div class="text-saffron uppercase tracking-[.2em] text-xs font-bold mb-4">
+                Come say hello
+            </div>
+
+            <h1 class="font-display text-5xl lg:text-7xl font-bold">
+                Reserve your corner.
+            </h1>
+
+            <p class="text-white/60 max-w-2xl mx-auto mt-5">
+                Bring your friends, your book, your date or simply yourself.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <section class="py-16 lg:py-24 bg-cream">
+
+        <div class="max-w-6xl mx-auto px-5 lg:px-8">
+
+            <div class="grid lg:grid-cols-2 gap-10">
+
+                <!-- FORM -->
+
+                <div class="bg-paper rounded-[2rem] p-7 sm:p-10 shadow-soft">
+
+                    <div id="successMessage"
+                         class="hidden mb-6 bg-green-50 border border-green-200 text-green-800 rounded-xl p-4 text-sm">
+                        <i class="fa-solid fa-circle-check mr-2"></i>
+                        Your reservation request has been received.
+                    </div>
+
+                    <h2 class="font-display text-3xl font-bold mb-2">
+                        Book a table
+                    </h2>
+
+                    <p class="text-brown/55 mb-8">
+                        Tell us when you're coming and we'll take care of the rest.
+                    </p>
+
+                    <form onsubmit="submitReservation(event)" class="space-y-5">
+
+                        <div class="grid sm:grid-cols-2 gap-5">
+
+                            <div>
+                                <label class="form-label">Name</label>
+                                <input required type="text"
+                                       class="form-input"
+                                       placeholder="Your name">
+                            </div>
+
+                            <div>
+                                <label class="form-label">Phone</label>
+                                <input required type="tel"
+                                       class="form-input"
+                                       placeholder="+91 98765 43210">
+                            </div>
+
+                        </div>
+
+                        <div class="grid sm:grid-cols-2 gap-5">
+
+                            <div>
+                                <label class="form-label">Date</label>
+                                <input required type="date"
+                                       class="form-input">
+                            </div>
+
+                            <div>
+                                <label class="form-label">Time</label>
+
+                                <select class="form-input">
+
+                                    <option>4:00 PM</option>
+                                    <option>5:00 PM</option>
+                                    <option>6:00 PM</option>
+                                    <option>7:00 PM</option>
+                                    <option>8:00 PM</option>
+                                    <option>9:00 PM</option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+                        <div>
+
+                            <label class="form-label">
+                                Number of guests
+                            </label>
+
+                            <select class="form-input">
+
+                                <option>1 person</option>
+                                <option selected>2 people</option>
+                                <option>3 people</option>
+                                <option>4 people</option>
+                                <option>5 people</option>
+                                <option>6+ people</option>
+
+                            </select>
+
+                        </div>
+
+                        <div>
+
+                            <label class="form-label">
+                                Special request
+                            </label>
+
+                            <textarea rows="4"
+                                      class="form-input"
+                                      placeholder="Window seat, birthday, quiet corner..."></textarea>
+
+                        </div>
+
+                        <button type="submit"
+                                class="w-full py-4 rounded-xl bg-terracotta hover:bg-terracottaDark text-white font-bold transition">
+                            Request Reservation
+                            <i class="fa-solid fa-arrow-right ml-2"></i>
+                        </button>
+
+                    </form>
+
+                </div>
+
+
+                <!-- DETAILS -->
+
+                <div class="space-y-6">
+
+                    <div class="bg-brown text-white rounded-[2rem] p-8 sm:p-10">
+
+                        <h2 class="font-display text-3xl font-bold mb-7">
+                            Find us
+                        </h2>
+
+                        <div class="space-y-6">
+
+                            <div class="flex gap-4">
+
+                                <div class="w-11 h-11 rounded-xl bg-terracotta flex items-center justify-center shrink-0">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div>
+
+                                <div>
+                                    <div class="font-bold mb-1">Location</div>
+                                    <div class="text-white/55 text-sm leading-relaxed">
+                                        Plot 12, Heritage Lane,<br>
+                                        Near Old Town Square,<br>
+                                        Cultural District, India
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                            <div class="flex gap-4">
+
+                                <div class="w-11 h-11 rounded-xl bg-terracotta flex items-center justify-center shrink-0">
+                                    <i class="fa-solid fa-clock"></i>
+                                </div>
+
+                                <div>
+                                    <div class="font-bold mb-1">Opening hours</div>
+                                    <div class="text-white/55 text-sm">
+                                        Monday – Sunday<br>
+                                        10:00 AM – 11:00 PM
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                            <div class="flex gap-4">
+
+                                <div class="w-11 h-11 rounded-xl bg-terracotta flex items-center justify-center shrink-0">
+                                    <i class="fa-solid fa-phone"></i>
+                                </div>
+
+                                <div>
+                                    <div class="font-bold mb-1">Call us</div>
+                                    <div class="text-white/55 text-sm">
+                                        +91 98765 43210
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                            <div class="flex gap-4">
+
+                                <div class="w-11 h-11 rounded-xl bg-terracotta flex items-center justify-center shrink-0">
+                                    <i class="fa-solid fa-envelope"></i>
+                                </div>
+
+                                <div>
+                                    <div class="font-bold mb-1">Email</div>
+                                    <div class="text-white/55 text-sm">
+                                        hello@musafircafe.in
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="rounded-[2rem] overflow-hidden h-64 relative">
+
+                        <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=85"
+                             class="w-full h-full object-cover"
+                             alt="Musafir cafe atmosphere">
+
+                        <div class="absolute inset-0 bg-brown/50 flex items-center justify-center">
+
+                            <div class="text-center text-white">
+
+                                <i class="fa-solid fa-location-dot text-3xl text-saffron mb-3"></i>
+
+                                <div class="font-display text-2xl font-bold">
+                                    See you over chai.
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="bg-paper rounded-[2rem] p-7 text-center">
+
+                        <h3 class="font-display text-2xl font-bold">
+                            Follow the journey
+                        </h3>
+
+                        <p class="text-sm text-brown/50 mt-2 mb-5">
+                            @MusafirCafe
+                        </p>
+
+                        <div class="flex justify-center gap-3">
+
+                            <a href="#"
+                               class="social-btn">
+                                <i class="fa-brands fa-instagram"></i>
+                            </a>
+
+                            <a href="#"
+                               class="social-btn">
+                                <i class="fa-brands fa-facebook-f"></i>
+                            </a>
+
+                            <a href="#"
+                               class="social-btn">
+                                <i class="fa-brands fa-x-twitter"></i>
+                            </a>
+
+                            <a href="#"
+                               class="social-btn">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</section>
+
+</main>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer class="bg-brown text-white border-t border-white/10">
+
+    <div class="max-w-7xl mx-auto px-5 lg:px-8 py-14">
+
+        <div class="grid md:grid-cols-4 gap-10">
+
+            <div class="md:col-span-2">
+
+                <div class="flex items-center gap-3 mb-5">
+
+                    <div class="w-11 h-11 rounded-full bg-gradient-to-br from-terracotta to-saffron flex items-center justify-center">
+                        <i class="fa-solid fa-mug-hot"></i>
+                    </div>
+
+                    <div>
+                        <div class="font-display text-2xl font-bold text-saffron">
+                            Musafir
+                        </div>
+
+                        <div class="text-[9px] uppercase tracking-[.28em] text-white/40">
+                            Cafe & Chai Ghar
+                        </div>
+                    </div>
+
+                </div>
+
+                <p class="text-white/50 max-w-md leading-relaxed">
+                    A warm place for good food, strong chai,
+                    slow evenings and stories worth sharing.
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h4 class="font-bold mb-5">
+                    Explore
+                </h4>
+
+                <div class="space-y-3 text-sm text-white/50">
+
+                    <button onclick="showPage('home')" class="block hover:text-saffron">
+                        Home
+                    </button>
+
+                    <button onclick="showPage('menu')" class="block hover:text-saffron">
+                        Menu
+                    </button>
+
+                    <button onclick="showPage('gallery')" class="block hover:text-saffron">
+                        Gallery
+                    </button>
+
+                    <button onclick="showPage('about')" class="block hover:text-saffron">
+                        Our Story
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div>
+
+                <h4 class="font-bold mb-5">
+                    Visit
+                </h4>
+
+                <div class="text-sm text-white/50 leading-relaxed">
+
+                    Plot 12, Heritage Lane<br>
+                    Cultural District, India<br><br>
+
+                    Mon — Sun<br>
+                    10 AM — 11 PM
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="border-t border-white/10 mt-12 pt-7 flex flex-col sm:flex-row justify-between gap-3 text-xs text-white/35">
+
+            <span>
+                © 2026 Musafir Cafe. All rights reserved.
+            </span>
+
+            <span>
+                Crafted with chai & desi soul.
+            </span>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- =========================================================
+     LIGHTBOX
+========================================================= -->
+
+<div id="lightbox"
+     class="modal fixed inset-0 z-[100] bg-black/90 backdrop-blur-md flex items-center justify-center p-5"
+     onclick="closeLightbox()">
+
+    <button onclick="closeLightbox()"
+            class="absolute top-5 right-5 w-12 h-12 rounded-full bg-white/10 text-white text-xl hover:bg-terracotta transition">
+        <i class="fa-solid fa-xmark"></i>
+    </button>
+
+    <div class="modal-content max-w-5xl max-h-[90vh]"
+         onclick="event.stopPropagation()">
+
+        <img id="lightboxImage"
+             src=""
+             alt="Gallery image"
+             class="max-h-[82vh] max-w-full object-contain rounded-2xl shadow-2xl">
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     EXTRA COMPONENT STYLES
+========================================================= -->
+
+<style>
+
+    .mobile-nav {
+        text-align: left;
+        padding: 12px 14px;
+        border-radius: 10px;
+        color: rgba(255,255,255,.8);
+        transition: .2s;
+    }
+
+    .mobile-nav:hover {
+        background: rgba(255,255,255,.08);
+        color: #E79A19;
+    }
+
+    .menu-filter,
+    .gallery-filter {
+        padding: 10px 18px;
+        border-radius: 999px;
+        background: white;
+        color: #432921;
+        border: 1px solid rgba(45,28,22,.1);
+        font-size: 14px;
+        font-weight: 600;
+        transition: .2s;
+    }
+
+    .menu-filter:hover,
+    .gallery-filter:hover {
+        border-color: #C95C35;
+        color: #C95C35;
+    }
+
+    .active-filter {
+        background: #C95C35 !important;
+        color: white !important;
+        border-color: #C95C35 !important;
+        box-shadow: 0 8px 25px rgba(201,92,53,.2);
+    }
+
+    .menu-product {
+        display: flex;
+        gap: 18px;
+        padding: 18px;
+        background: #FFFDF8;
+        border: 1px solid rgba(45,28,22,.06);
+        border-radius: 22px;
+        transition: .3s ease;
+    }
+
+    .menu-product:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 18px 45px rgba(45,28,22,.09);
+    }
+
+    .menu-product img {
+        width: 115px;
+        height: 115px;
+        object-fit: cover;
+        border-radius: 16px;
+        flex-shrink: 0;
+    }
+
+    .menu-product-content {
+        flex: 1;
+        padding-top: 2px;
+    }
+
+    .menu-product h3 {
+        font-family: 'Playfair Display', serif;
+        font-size: 20px;
+        font-weight: 700;
+        color: #2D1C16;
+    }
+
+    .menu-product strong {
+        color: #C95C35;
+        white-space: nowrap;
+    }
+
+    .menu-product p {
+        color: rgba(45,28,22,.55);
+        font-size: 13px;
+        line-height: 1.6;
+        margin-top: 7px;
+    }
+
+    .menu-product span {
+        display: inline-block;
+        margin-top: 9px;
+        padding: 4px 8px;
+        background: #FCEDE6;
+        color: #C95C35;
+        font-size: 10px;
+        font-weight: 700;
+        border-radius: 5px;
+        text-transform: uppercase;
+        letter-spacing: .05em;
+    }
+
+
+    /* Enhanced menu experience */
+    .menu-product {
+        position: relative;
+        overflow: hidden;
+        align-items: stretch;
+        background: linear-gradient(145deg, #fffdf8, #fbf5ec);
+        border-color: rgba(45,28,22,.08);
+    }
+    .menu-product::before {
+        content: "";
+        position: absolute;
+        left: 0; top: 18px; bottom: 18px; width: 3px;
+        background: linear-gradient(#e79a19, #c95c35);
+        border-radius: 0 5px 5px 0;
+        opacity: 0; transition: .3s ease;
+    }
+    .menu-product:hover::before { opacity: 1; }
+    .menu-product img {
+        width: 140px; height: 140px; border-radius: 18px;
+        transition: transform .55s cubic-bezier(.2,.8,.2,1), filter .3s ease;
+    }
+    .menu-product:hover img { transform: scale(1.045); filter: saturate(1.08); }
+    .menu-product-content { display:flex; flex-direction:column; justify-content:center; }
+    .menu-product h3 { line-height:1.15; }
+    .menu-product strong { font-size:17px; font-variant-numeric:tabular-nums; }
+
+    .menu-search-wrap { position:relative; max-width:620px; margin:0 auto 22px; }
+    .menu-search-wrap > i {
+        position:absolute; left:18px; top:50%; transform:translateY(-50%);
+        color:rgba(45,28,22,.45);
+    }
+    #menuSearch {
+        width:100%; padding:15px 48px; border:1px solid rgba(45,28,22,.1);
+        background:#fffdf8; border-radius:999px; outline:none; font-size:14px;
+        box-shadow:0 10px 30px rgba(45,28,22,.05);
+    }
+    #menuSearch:focus { border-color:#c95c35; box-shadow:0 0 0 4px rgba(201,92,53,.09); }
+    #clearMenuSearch {
+        position:absolute; right:9px; top:50%; transform:translateY(-50%);
+        width:34px; height:34px; border-radius:50%; color:rgba(45,28,22,.5);
+        display:none;
+    }
+    #clearMenuSearch:hover { background:#f2e7d8; color:#2d1c16; }
+    .menu-meta { text-align:center; color:rgba(45,28,22,.48); font-size:12px; margin:0 0 28px; }
+
+    @media(max-width:640px) {
+        .menu-product img { width:100px; height:100px; }
+        .menu-product { padding:13px; }
+    }
+    .form-label {
+        display: block;
+        color: #432921;
+        font-size: 13px;
+        font-weight: 700;
+        margin-bottom: 7px;
+    }
+
+    .form-input {
+        width: 100%;
+        padding: 13px 15px;
+        border: 1px solid rgba(45,28,22,.12);
+        background: #FBF5EC;
+        border-radius: 12px;
+        outline: none;
+        color: #2D1C16;
+        transition: .2s;
+        font-size: 14px;
+    }
+
+    .form-input:focus {
+        border-color: #C95C35;
+        box-shadow: 0 0 0 3px rgba(201,92,53,.1);
+    }
+
+    .social-btn {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #FBF5EC;
+        color: #432921;
+        transition: .2s;
+    }
+
+    .social-btn:hover {
+        background: #C95C35;
+        color: white;
+        transform: translateY(-3px);
+    }
+
+    @media(max-width: 640px) {
+
+        .menu-product {
+            gap: 12px;
+        }
+
+        .menu-product img {
+            width: 90px;
+            height: 90px;
+        }
+
+        .menu-product h3 {
+            font-size: 17px;
+        }
+
+        .menu-product p {
+            font-size: 12px;
+        }
+
+    }
+
+</style>
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script>
+
+    /* ========================================================
+       PAGE NAVIGATION
+    ======================================================== */
+
+    function showPage(page) {
+
+        document.querySelectorAll('.page').forEach(section => {
+            section.classList.add('hidden');
+        });
+
+        const target = document.getElementById('page-' + page);
+
+        if (target) {
+            target.classList.remove('hidden');
+        }
+
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.classList.remove('active');
+            link.classList.remove('text-saffron');
+        });
+
+        const active = document.querySelector(
+            '.nav-link[data-page="' + page + '"]'
+        );
+
+        if (active) {
+            active.classList.add('active');
+            active.classList.add('text-saffron');
+        }
+
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
+
+
+    /* ========================================================
+       MOBILE MENU
+    ======================================================== */
+
+    function toggleMobile() {
+
+        const menu = document.getElementById('mobileMenu');
+
+        menu.classList.toggle('hidden');
+
+        const icon = document.querySelector('#mobileBtn i');
+
+        if (menu.classList.contains('hidden')) {
+            icon.className = 'fa-solid fa-bars';
+        } else {
+            icon.className = 'fa-solid fa-xmark';
+        }
+    }
+
+
+    function mobileNavigate(page) {
+
+        showPage(page);
+
+        const menu = document.getElementById('mobileMenu');
+
+        menu.classList.add('hidden');
+
+        const icon = document.querySelector('#mobileBtn i');
+
+        icon.className = 'fa-solid fa-bars';
+    }
+
+
+    /* ========================================================
+       MENU FILTER
+    ======================================================== */
+
+    function filterMenu(category, button) {
+        document.querySelectorAll('.menu-filter').forEach(btn => btn.classList.remove('active-filter'));
+        if (button) button.classList.add('active-filter');
+        window.currentMenuCategory = category;
+        applyMenuFilters();
+    }
+
+    function searchMenu(query) {
+        window.currentMenuSearch = query.trim().toLowerCase();
+        const clear = document.getElementById('clearMenuSearch');
+        if (clear) clear.style.display = window.currentMenuSearch ? 'block' : 'none';
+        applyMenuFilters();
+    }
+
+    function clearMenuSearch() {
+        const input = document.getElementById('menuSearch');
+        if (input) input.value = '';
+        searchMenu('');
+    }
+
+    function applyMenuFilters() {
+        const category = window.currentMenuCategory || 'all';
+        const query = window.currentMenuSearch || '';
+        let visible = 0;
+
+        document.querySelectorAll('.menu-product').forEach(item => {
+            const categoryMatch = category === 'all' || item.dataset.category === category;
+            const textMatch = !query || item.textContent.toLowerCase().includes(query);
+            const show = categoryMatch && textMatch;
+            item.classList.toggle('menu-item-hidden', !show);
+            if (show) visible++;
+        });
+
+        const meta = document.getElementById('menuMeta');
+        if (meta) meta.textContent = query
+            ? `${visible} item${visible === 1 ? '' : 's'} found for “${query}”`
+            : `Showing ${visible} menu items`;
+    }
+
+    /* ========================================================
+       GALLERY FILTER
+    ======================================================== */
+
+    function filterGallery(category, button) {
+
+        document.querySelectorAll('.gallery-filter').forEach(btn => {
+            btn.classList.remove('active-filter');
+        });
+
+        if (button) {
+            button.classList.add('active-filter');
+        }
+
+        document.querySelectorAll('.gallery-item').forEach(item => {
+
+            const itemCategory = item.dataset.category;
+
+            if (
+                category === 'all' ||
+                itemCategory === category
+            ) {
+                item.style.display = '';
+            } else {
+                item.style.display = 'none';
+            }
+
+        });
+    }
+
+
+    /* ========================================================
+       LIGHTBOX
+    ======================================================== */
+
+    function openLightbox(element) {
+
+        const image = element.querySelector('img');
+
+        if (!image) return;
+
+        const modal = document.getElementById('lightbox');
+        const modalImage = document.getElementById('lightboxImage');
+
+        modalImage.src = image.src;
+
+        modal.classList.add('show');
+
+        document.body.style.overflow = 'hidden';
+    }
+
+
+    function closeLightbox() {
+
+        const modal = document.getElementById('lightbox');
+
+        modal.classList.remove('show');
+
+        document.body.style.overflow = '';
+    }
+
+
+    document.addEventListener('keydown', function(event) {
+
+        if (event.key === 'Escape') {
+            closeLightbox();
+        }
+
+    });
+
+
+    /* ========================================================
+       RESERVATION FORM
+    ======================================================== */
+
+    function submitReservation(event) {
+
+        event.preventDefault();
+
+        const success = document.getElementById('successMessage');
+
+        success.classList.remove('hidden');
+
+        event.target.reset();
+
+        setTimeout(() => {
+            success.classList.add('hidden');
+        }, 6000);
+
+    }
+
+
+    /* ========================================================
+       NAVBAR SCROLL EFFECT
+    ======================================================== */
+
+    window.addEventListener('scroll', function() {
+
+        const navbar = document.getElementById('navbar');
+
+        if (window.scrollY > 30) {
+
+            navbar.classList.add(
+                'shadow-2xl'
+            );
+
+        } else {
+
+            navbar.classList.remove(
+                'shadow-2xl'
+            );
+
+        }
+
+    });
+
+
+    /* ========================================================
+       INITIAL PAGE
+    ======================================================== */
+
+    document.addEventListener('DOMContentLoaded', function() {
+
+        showPage('home');
+
+        window.currentMenuCategory = 'all';
+        window.currentMenuSearch = '';
+        applyMenuFilters();
+
+        const firstMenuFilter =
+            document.querySelector('.menu-filter');
+
+        if (firstMenuFilter) {
+            firstMenuFilter.classList.add('active-filter');
+        }
+
+    });
+
+</script>
+
+</body>
+</html>
